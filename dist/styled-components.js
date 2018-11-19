@@ -4197,7 +4197,7 @@ var createGlobalStyle = function createGlobalStyle(strings) {
     interpolations[_key - 1] = arguments[_key];
   }
 
-  injectGlobal.apply(undefined, [string].concat(interpolations));
+  injectGlobal.apply(undefined, [strings].concat(interpolations));
   return function () {
     return null;
   };

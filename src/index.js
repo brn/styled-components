@@ -35,7 +35,7 @@ const StyledComponent = _StyledComponent(ComponentStyle, constructWithOptions)
 const keyframes = _keyframes(generateAlphabeticName, stringifyRules, css)
 const injectGlobal = _injectGlobal(stringifyRules, css)
 const createGlobalStyle = (strings, ...interpolations) => {
-  injectGlobal(string, ...interpolations)
+  injectGlobal(strings, ...interpolations)
   return () => null
 }
 const styled = _styled(StyledComponent, constructWithOptions)
