@@ -1,5 +1,6 @@
 // @flow
 import type { Interpolation, Target } from '../types'
+import React from 'react'
 
 export default (css: Function) => {
   const constructWithOptions = (
@@ -10,7 +11,8 @@ export default (css: Function) => {
     if (
       process.env.NODE_ENV !== 'production' &&
       typeof tag !== 'string' &&
-      typeof tag !== 'function'
+      typeof tag !== 'function' &&
+      typeof tag !== 'object'
     ) {
       // $FlowInvalidInputTest
       throw new Error(`Cannot create styled-component for component: ${tag}`)
@@ -20,7 +22,27 @@ export default (css: Function) => {
     const templateFunction = (
       strings: Array<string>,
       ...interpolations: Array<Interpolation>
-    ) => componentConstructor(tag, options, css(strings, ...interpolations))
+    ) => {
+      const C = componentConstructor(
+        tag,
+        options,
+        css(strings, ...interpolations),
+      )
+      return React.forwardRef((p, ref) => {
+        const propsForElement = Object.keys(p).reduce((acc, propName) => {
+          // Don't pass through non HTML tags through to HTML elements
+          // always omit innerRef
+          if (propName !== 'children') {
+            // eslint-disable-next-line no-param-reassign
+            acc[propName] = p[propName]
+          }
+
+          return acc
+        }, {})
+        propsForElement.innerRef = ref
+        return React.createElement(C, propsForElement, p.children)
+      })
+    }
 
     /* If config methods are called, wrap up a new template function and merge options */
     templateFunction.withConfig = config =>
