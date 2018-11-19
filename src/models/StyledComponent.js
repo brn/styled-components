@@ -209,7 +209,6 @@ export default (ComponentStyle: Function, constructWithOptions: Function) => {
         .join(' ')
 
       const baseProps = {
-        ...this.attrs,
         className,
       }
 
@@ -219,7 +218,7 @@ export default (ComponentStyle: Function, constructWithOptions: Function) => {
         baseProps.ref = innerRef
       }
 
-      const propsForElement = Object.keys(this.props).reduce(
+      const propsForElement = Object.keys({...this.props, ...this.attrs}).reduce(
         (acc, propName) => {
           // Don't pass through non HTML tags through to HTML elements
           // always omit innerRef

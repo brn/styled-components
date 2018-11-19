@@ -3647,9 +3647,9 @@ var _StyledComponent = (function (ComponentStyle, constructWithOptions) {
       // eslint-disable-next-line react/prop-types
       this.props.className, styledComponentId, this.attrs.className, generatedClassName].filter(Boolean).join(' ');
 
-      var baseProps = _extends({}, this.attrs, {
+      var baseProps = {
         className: className
-      });
+      };
 
       if (isStyledComponent(target)) {
         baseProps.innerRef = innerRef;
@@ -3657,7 +3657,7 @@ var _StyledComponent = (function (ComponentStyle, constructWithOptions) {
         baseProps.ref = innerRef;
       }
 
-      var propsForElement = Object.keys(this.props).reduce(function (acc, propName) {
+      var propsForElement = Object.keys(_extends({}, this.props, this.attrs)).reduce(function (acc, propName) {
         // Don't pass through non HTML tags through to HTML elements
         // always omit innerRef
         if (propName !== 'innerRef' && propName !== 'className' && (!isTargetTag || validAttr(propName))) {
