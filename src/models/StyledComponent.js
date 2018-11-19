@@ -196,7 +196,7 @@ export default (ComponentStyle: Function, constructWithOptions: Function) => {
       const { generatedClassName } = this.state
       const { styledComponentId, target } = this.constructor
 
-      const isTargetTag = isTag(target)
+      const isTargetTag = isTag(target) || this.props.__styled_components_isTag;
 
       const className = [
         // eslint-disable-next-line react/prop-types

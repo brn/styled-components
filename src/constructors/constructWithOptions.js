@@ -1,6 +1,5 @@
 // @flow
 import type { Interpolation, Target } from '../types'
-import validAttr from '../utils/validAttr'
 import React from 'react'
 
 export default (css: Function) => {
@@ -31,22 +30,17 @@ export default (css: Function) => {
       )
       return React.forwardRef((p, ref) => {
         const propsForElement = Object.keys(p).reduce((acc, propName) => {
+          // Don't pass through non HTML tags through to HTML elements
+          // always omit innerRef
           if (propName !== 'children') {
-            if (typeof tag === 'string') {
-              if (validAttr(propName)) {
-                acc[propName] = p[propName]
-              }
-            } else  {
-              // Don't pass through non HTML tags through to HTML elements
-              // always omit innerRef
-              // eslint-disable-next-line no-param-reassign
-              acc[propName] = p[propName]
-            }
+            // eslint-disable-next-line no-param-reassign
+            acc[propName] = p[propName]
           }
 
           return acc
         }, {})
         propsForElement.innerRef = ref
+        propsForElement.__styled_components_isTag = typeof tag === 'string';
         return React.createElement(C, propsForElement, p.children)
       })
     }

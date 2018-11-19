@@ -1245,7 +1245,7 @@ var _StyledComponent = (function (ComponentStyle, constructWithOptions) {
           target = _constructor2.target;
 
 
-      var isTargetTag = isTag(target);
+      var isTargetTag = isTag(target) || this.props.__styled_components_isTag;
 
       var className = [
       // eslint-disable-next-line react/prop-types
@@ -1611,22 +1611,17 @@ var _constructWithOptions = (function (css) {
       var C = componentConstructor(tag, options, css.apply(undefined, [strings].concat(interpolations)));
       return React.forwardRef(function (p, ref) {
         var propsForElement = Object.keys(p).reduce(function (acc, propName) {
+          // Don't pass through non HTML tags through to HTML elements
+          // always omit innerRef
           if (propName !== 'children') {
-            if (typeof tag === 'string') {
-              if (validAttr(propName)) {
-                acc[propName] = p[propName];
-              }
-            } else {
-              // Don't pass through non HTML tags through to HTML elements
-              // always omit innerRef
-              // eslint-disable-next-line no-param-reassign
-              acc[propName] = p[propName];
-            }
+            // eslint-disable-next-line no-param-reassign
+            acc[propName] = p[propName];
           }
 
           return acc;
         }, {});
         propsForElement.innerRef = ref;
+        propsForElement.__styled_components_isTag = typeof tag === 'string';
         return React.createElement(C, propsForElement, p.children);
       });
     };
