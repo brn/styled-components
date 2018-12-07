@@ -3196,6 +3196,13 @@ var ServerStyleSheet = function () {
 
 //      
 
+/* eslint-disable */
+var __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS = {
+  StyleSheet: StyleSheet
+};
+
+//      
+
 var LIMIT = 200;
 
 var createWarnTooManyClasses = (function (displayName) {
@@ -4214,6 +4221,7 @@ exports.ThemeProvider = ThemeProvider;
 exports.withTheme = wrapWithTheme;
 exports.ServerStyleSheet = ServerStyleSheet;
 exports.StyleSheetManager = StyleSheetManager;
+exports.__DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS = __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

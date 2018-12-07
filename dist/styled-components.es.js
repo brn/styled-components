@@ -800,6 +800,13 @@ var ServerStyleSheet = function () {
 
 //      
 
+/* eslint-disable */
+var __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS = {
+  StyleSheet: StyleSheet
+};
+
+//      
+
 var LIMIT = 200;
 
 var createWarnTooManyClasses = (function (displayName) {
@@ -1761,4 +1768,4 @@ var createGlobalStyle = function createGlobalStyle(strings) {
 };
 var styled = _styled(StyledComponent, constructWithOptions);
 
-export { css, keyframes, injectGlobal, createGlobalStyle, ThemeProvider, wrapWithTheme as withTheme, ServerStyleSheet, StyleSheetManager };export default styled;
+export { css, keyframes, injectGlobal, createGlobalStyle, ThemeProvider, wrapWithTheme as withTheme, ServerStyleSheet, StyleSheetManager, __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS };export default styled;

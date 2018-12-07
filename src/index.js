@@ -7,6 +7,7 @@ import generateAlphabeticName from './utils/generateAlphabeticName'
 import css from './constructors/css'
 import ServerStyleSheet from './models/ServerStyleSheet'
 import StyleSheetManager from './models/StyleSheetManager'
+import { __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS } from './secretInternals'
 
 /* Import singleton constructors */
 import _StyledComponent from './models/StyledComponent'
@@ -51,4 +52,5 @@ export {
   withTheme,
   ServerStyleSheet,
   StyleSheetManager,
+  __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS,
 }
